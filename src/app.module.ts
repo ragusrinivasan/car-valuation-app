@@ -12,11 +12,15 @@ import { Report } from './reports/report.entity';
 @Module({
   controllers: [AppController],
   providers: [AppService],
-  imports: [TypeOrmModule.forRoot({
-    type: 'sqlite',
-    database: 'db.sqlite',
-    entities: [User, Report],
-    synchronize: true,
-  }), UsersModule, ReportsModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'db.sqlite',
+      entities: [User, Report],
+      synchronize: true,
+    }),
+    UsersModule,
+    ReportsModule,
+  ],
 })
-export class AppModule { }
+export class AppModule {}
