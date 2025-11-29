@@ -9,6 +9,7 @@ import {
   Delete,
   Session,
   UseGuards,
+  NotFoundException,
   // Res,
   // Response,
   // BadRequestException,
@@ -19,10 +20,10 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserDto } from './dtos/user.dto';
 
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
-// import { SerializeInterceptor } from 'src/interceptors/serialize.interceptor';
-import { Serialize } from 'src/interceptors/serialize.interceptor';
+// import { SerializeInterceptor } from '../interceptors/serialize.interceptor';
+import { Serialize } from '../interceptors/serialize.interceptor';
 // import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
 
 import { CurrentUser } from './decorators/current-user.decorator';
@@ -95,9 +96,15 @@ export class UsersController {
   // @UseInterceptors(new SerializeInterceptor(UserDto))
 
   @Get('/:id')
-  findUser(@Param('id') id: string) {
+  async findUser(@Param('id') id: string) {
     // console.log('Handler is running');
-    return this.usersService.findOne(parseInt(id));
+    const user = await this.usersService.findOne(parseInt(id));
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
   }
 
   @Get()

@@ -22,10 +22,6 @@ export class UsersService {
 
     const user = await this.repo.findOneBy({ id });
 
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
     return user;
   }
 
