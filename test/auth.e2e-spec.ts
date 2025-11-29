@@ -41,7 +41,7 @@ describe('Authentication System(e2e)', () => {
 
     const cookie = response.get('Set-Cookie');
 
-    const {body} =await request(app.getHttpServer())
+    const { body } = await request(app.getHttpServer())
       .get('/auth/whoami')
       .set('Cookie', cookie)
       .expect(200);

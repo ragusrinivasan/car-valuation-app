@@ -12,7 +12,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { User } from './users/entities/user.entity';
-import { Report } from './reports/report.entity';
+import { Report } from './reports/entities/report.entity';
 
 @Module({
   controllers: [AppController],
