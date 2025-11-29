@@ -7,9 +7,9 @@ import { CurrentUserInterceptor } from './interceptors/current-user.interceptor'
 import { UsersController } from './users.controller';
 
 import { UsersService } from './users.service';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User])],

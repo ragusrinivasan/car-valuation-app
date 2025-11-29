@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { UsersService } from '../users.service';
 import { randomBytes, scryptSync } from 'crypto';
 
 @Injectable()
