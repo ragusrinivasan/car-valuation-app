@@ -30,15 +30,32 @@ import { Report } from './reports/entities/report.entity';
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
+
     TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'sqlite',
-        database: config.get<string>('DB_NAME'),
-        synchronize: true,
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get<string>('DB_HOST'),
+        port: parseInt(configService.get<string>('DB_PORT') || '5432', 10),
+        username: configService.get<string>('DB_USER'),
+        password: configService.get<string>('DB_PASS'),
+        database: configService.get<string>('DB_NAME'),
         entities: [User, Report],
+        synchronize: false, // because we rely on migrations
+        migrations: ['dist/migrations/*.js'],
       }),
     }),
+
+    // TypeOrmModule.forRootAsync({
+    //   inject: [ConfigService],
+    //   useFactory: (config: ConfigService) => ({
+    //     type: 'sqlite',
+    //     database: config.get<string>('DB_NAME'),
+    //     synchronize: true,
+    //     entities: [User, Report],
+    //   }),
+    // }),
 
     // TypeOrmModule.forRoot({
     //   type: 'sqlite',
