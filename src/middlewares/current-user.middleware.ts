@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import { UsersService } from '../users/users.service';
 
-import { User } from 'src/users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
 
 declare module 'express-serve-static-core' {
   interface Request {

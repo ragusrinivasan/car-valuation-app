@@ -15,12 +15,12 @@ import { CreateReportDto } from './dtos/create-report.dto';
 import { ApproveReportDto } from './dtos/approve-report.dto';
 
 import { CurrentUser } from '../users/decorators/current-user.decorator';
-import { User } from 'src/users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
 
 import { ReportsService } from './reports.service';
-import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { Serialize } from '../interceptors/serialize.interceptor';
 import { ReportDto } from './dtos/report.dto';
-import { AdminGuard } from 'src/guards/admin.guard';
+import { AdminGuard } from '../guards/admin.guard';
 import { GetEstimateDto } from './dtos/get-estimate.dto';
 
 @Controller('reports')

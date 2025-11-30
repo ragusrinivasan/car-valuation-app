@@ -1,4 +1,4 @@
-import { Report } from 'src/reports/entities/report.entity';
+import { Report } from '../../reports/entities/report.entity';
 import {
   AfterInsert,
   AfterRemove,
